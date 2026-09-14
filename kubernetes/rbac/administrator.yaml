@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: platform-administrator
+  labels:
+    app.kubernetes.io/part-of: open-identity-governance
+    app.kubernetes.io/component: authorization
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: platform-administrator
+  labels:
+    app.kubernetes.io/part-of: open-identity-governance
+    app.kubernetes.io/component: authorization
+subjects:
+  - kind: ServiceAccount
+    name: administrator
+    namespace: workloads
+roleRef:
+  kind: ClusterRole
+  name: platform-administrator
+  apiGroup: rbac.authorization.k8s.io
