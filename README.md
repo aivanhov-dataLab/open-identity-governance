@@ -7,7 +7,7 @@
 ![Falco](https://img.shields.io/badge/Falco-Runtime%20Security-00A98F)
 ![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC)
 
-**An independent lab reproducing an enterprise-style Identity & Access Governance stack on Kubernetes** — Identity (Keycloak), Authorization (RBAC + OpenFGA), Policy-as-Code (OPA), Runtime Security (Falco) and Observability (Prometheus/Grafana).
+**A hands-on Kubernetes IAM and DevSecOps security lab combining identity, authorization, policy enforcement and runtime security.** — Identity (Keycloak), Authorization (RBAC + OpenFGA), Policy-as-Code (OPA), Runtime Security (Falco) and Observability (Prometheus/Grafana).
 
 > Built to demonstrate hands-on IAM, Kubernetes security and DevSecOps engineering practices — not a proprietary product clone.
 
