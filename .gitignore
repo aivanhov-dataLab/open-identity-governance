@@ -12,9 +12,13 @@
 credentials/
 secrets/
 
-# Kubernetes
+# Kubernetes,secret
 *.secret.yaml
 *.secret.yml
+*-secret.yaml
+*-secret.yml
+!*-secret.example.yaml
+!*-secret.example.yml
 
 # Terraform
 .terraform/
