@@ -53,7 +53,10 @@ spec:
 
             - name: KC_DB_URL
               value: jdbc:postgresql://keycloak-postgresql:5432/keycloak
-
+            
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+              
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:

@@ -23,28 +23,34 @@ metadata:
   labels:
     app.kubernetes.io/part-of: open-identity-governance
     app.kubernetes.io/component: database
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: keycloak-postgresql
+
   template:
     metadata:
       labels:
         app: keycloak-postgresql
         app.kubernetes.io/part-of: open-identity-governance
         app.kubernetes.io/component: database
+
     spec:
       containers:
         - name: postgresql
           image: postgres:16
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 5432
               name: postgres
+
           env:
             - name: POSTGRES_DB
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
                   name: keycloak-postgresql
                   key: POSTGRES_DB
@@ -61,7 +67,11 @@ spec:
                   name: keycloak-postgresql
                   key: POSTGRES_PASSWORD
 
-          resources: 
+          volumeMounts:
+            - name: postgresql-data
+              mountPath: /var/lib/postgresql/data
+
+          resources:
             requests:
               cpu: 100m
               memory: 512Mi
@@ -79,7 +89,7 @@ spec:
                 - keycloak
             initialDelaySeconds: 5
             periodSeconds: 5
-          
+
           livenessProbe:
             exec:
               command:
@@ -91,5 +101,7 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 10
 
-            
-
+      volumes:
+        - name: postgresql-data
+          persistentVolumeClaim:
+            claimName: keycloak-postgresql-data
